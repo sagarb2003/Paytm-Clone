@@ -1,7 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import UserCard from './UserCard';
+import axios from 'axios';
 
 const MainContent = () => {
+  const[balance,setBalance]=useState(0);
+
+  useEffect(()=>{
+    async function fetchData(){
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/v1/account/balance",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        console.log(response);
+        if (response.status === 200) {
+          setBalance(response.data.balance.toFixed(2));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+    
+  },[])
   return (
     <div>
       <div className="flex justify-between border-b-2 pb-3 font-extrabold">
@@ -23,7 +48,7 @@ const MainContent = () => {
         </div>
       </div>
       <div className='m-2'>
-        <div className="mt-10 text-xl font-bold">Your Balance 5000</div>
+        <div className="mt-10 text-xl font-bold">Your Balance {balance}</div>
         <div className="mt-5">
           <p className="text-2xl font-medium">Users</p>
           <input

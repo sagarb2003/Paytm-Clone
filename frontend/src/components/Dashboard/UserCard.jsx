@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const UserCard = () => {
   return (
@@ -18,10 +19,10 @@ const UserCard = () => {
         </svg>
         <p className="text-2xl font-bold ml-2">User 1</p>
       </div>
-      <div>
-        <button className="bg-black text-white rounded-lg p-2 text-sm w-40  font-bold">
+      <div className='mt-1'>
+        <Link to='/send' className="bg-black text-white rounded-lg p-2  text-sm w-40  font-bold">
           Send Money
-        </button>
+        </Link>
       </div>
     </div>
   );
