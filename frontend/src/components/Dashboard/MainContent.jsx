@@ -4,6 +4,8 @@ import axios from 'axios';
 
 const MainContent = () => {
   const[balance,setBalance]=useState(0);
+  const [users,setUsers]=useState([]);
+  const [filter,setFilter]=useState("");
 
   useEffect(()=>{
     async function fetchData(){
@@ -16,7 +18,7 @@ const MainContent = () => {
             },
           }
         );
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
           setBalance(response.data.balance.toFixed(2));
         }
@@ -27,6 +29,16 @@ const MainContent = () => {
     fetchData();
     
   },[])
+
+  useEffect(()=>{
+    console.log(filter);
+    axios
+      .get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}`)
+      .then((response) => {
+        setUsers(response.data.user);
+        console.log(response.data.user);
+      })
+  },[filter])
   return (
     <div>
       <div className="flex justify-between border-b-2 pb-3 font-extrabold">
@@ -55,15 +67,15 @@ const MainContent = () => {
             type="text"
             placeholder="Search User"
             className="border-2 border-slate-300 p-1 mt-5 w-5/6 rounded-md"
+            onChange={(e)=>{
+              setFilter(e.target.value);
+            }}
           />
         </div>
         <div>
-          <UserCard/>
-          <UserCard/>
-          <UserCard/>
-          <UserCard/>
-          <UserCard/>
-          <UserCard/>
+          {users.map((user)=>{
+            return <UserCard key={user._id} _id={user._id} firstName={user.firstName} lastName={user.lastName} />
+          })}
         </div>
       </div>
 

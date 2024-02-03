@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const UserCard = () => {
+const UserCard = ({_id,firstName,lastName}) => {
+  const navigate=useNavigate();
   return (
     <div className="flex justify-between rounded-md mt-4 border-2 p-2 ">
       <div className="flex">
@@ -17,12 +18,14 @@ const UserCard = () => {
             clip-rule="evenodd"
           />
         </svg>
-        <p className="text-2xl font-bold ml-2">User 1</p>
+        <p className="text-2xl font-bold ml-2">{firstName} {lastName}</p>
       </div>
       <div className='mt-1'>
-        <Link to='/send' className="bg-black text-white rounded-lg p-2  text-sm w-40  font-bold">
-          Send Money
-        </Link>
+        <button onClick={()=>{
+           navigate("/send?id=" + _id + "&name=" + firstName);
+        }} className="bg-black text-white rounded-lg p-2  text-sm w-40  font-bold">
+        Send Money
+        </button>
       </div>
     </div>
   );
