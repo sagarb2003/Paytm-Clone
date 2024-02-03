@@ -32,11 +32,13 @@ const MainContent = () => {
 
   useEffect(()=>{
     console.log(filter);
+    const apiUrl = `http://localhost:3000/api/v1/user/bulk?filter=${filter}`;
+    // console.log(apiUrl);
     axios
-      .get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}`)
+      .get(apiUrl)
       .then((response) => {
         setUsers(response.data.user);
-        console.log(response.data.user);
+        // console.log(response.data.user);
       })
   },[filter])
   return (
@@ -44,7 +46,7 @@ const MainContent = () => {
       <div className="flex justify-between border-b-2 pb-3 font-extrabold">
         <p className="text-2xl">Payments App</p>
         <div className="flex ">
-          <p className="text-2xl pr-2">Hello,Sagar</p>
+          <p className="text-2xl pr-2">Welcome</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

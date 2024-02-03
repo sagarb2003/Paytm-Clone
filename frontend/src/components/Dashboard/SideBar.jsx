@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import MainContent from './MainContent';
 
-
 const SideBar = () => {
+  
   return (
     <>
       <aside
