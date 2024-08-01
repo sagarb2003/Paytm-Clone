@@ -6,13 +6,13 @@ const { authMiddleware } = require("../middleware");
 
 router.get("/balance", authMiddleware, async (req, res) => {
   try {
-    console.log("UserID:", req.userId); // Log the userId for debugging
+    //console.log("UserID:", req.userId);  Log the userId for debugging
 
     const account = await Account.findOne({
       userId: req.userId,
     });
 
-    console.log("Account:", account); // Log the account for debugging
+    //console.log("Account:", account);  Log the account for debugging
 
     if (!account) {
       return res.status(403).json({
