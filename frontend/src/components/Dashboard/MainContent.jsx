@@ -10,11 +10,17 @@ const MainContent = () => {
   useEffect(()=>{
     async function fetchData(){
       try {
+        const token = localStorage.getItem("token");
+        console.log(token);
+        if (!token) {
+          throw new Error("No token found");
+        }
+
         const response = await axios.get(
           "http://localhost:3000/api/v1/account/balance",
           {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -23,7 +29,7 @@ const MainContent = () => {
           setBalance(response.data.balance.toFixed(2));
         }
       } catch (error) {
-        console.log(error);
+        console.error("Error ",error);
       }
     }
     fetchData();
