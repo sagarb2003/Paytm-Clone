@@ -17,7 +17,7 @@ const MainContent = () => {
         }
 
         const response = await axios.get(
-          "http://localhost:3000/api/v1/account/balance",
+          "https://paytment-backend.vercel.app/api/v1/account/balance",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -38,7 +38,7 @@ const MainContent = () => {
 
   useEffect(()=>{
     console.log(filter);
-    const apiUrl = `http://localhost:3000/api/v1/user/bulk?filter=${filter}`;
+    const apiUrl = `https://paytment-backend.vercel.app/api/v1/user/bulk?filter=${filter}`;
     // console.log(apiUrl);
     axios
       .get(apiUrl)

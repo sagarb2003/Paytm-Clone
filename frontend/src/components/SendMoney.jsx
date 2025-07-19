@@ -18,7 +18,7 @@ const SendMoney = () => {
   }
   async function transferHandler(){
     const response = axios.post(
-      "http://localhost:3000/api/v1/account/transfer",transferObject,
+      "https://paytment-backend.vercel.app/api/v1/account/transfer",transferObject,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
