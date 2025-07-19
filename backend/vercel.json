@@ -16,6 +16,5 @@
             "src": "/(.*)",
             "dest": "index.js"
         }
-    ],
-    "ignoredBuildStep": "git diff --quiet HEAD^ HEAD ./backend/"
+    ]
 }
