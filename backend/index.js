@@ -9,4 +9,10 @@ app.use(express.json())
 
 app.use('/api/v1',mainRouter)
 
-app.listen(3000)
+app.get('/',(req,res)=>{
+    res.send('Backend is running on PORT 8000!')
+})
+
+app.listen(8000,()=>{
+    console.log('Backend is running on PORT 8000!')
+})
